@@ -35,7 +35,7 @@
             "Description": "You may want to choose <false> if you intend to access Netsil AOC behind a load balancer.",
             "AllowedValues": ["true", "false"],
             "Default": "true",
-            "Type": "String",
+            "Type": "String"
         },
         "VPC": {
             "Description": "You must launch Netsil AOC in the same VPC as that of the applications you wish to monitor, or setup VPC peering when using a separate VPC.",
@@ -98,34 +98,34 @@
         },
         "AWSRegionArch2AMI": {
             "us-east-1": {
-                "HVM64": "ami-86eebe90"
+                "HVM64": "ami-48a78833"
             },
             "us-east-2": {
-                "HVM64": "ami-92e0c6f7"
+                "HVM64": "ami-53cfef36"
             },
             "us-west-1": {
-                "HVM64": "ami-d6b89bb6"
+                "HVM64": "ami-5f002b3f"
             },
             "us-west-2": {
-                "HVM64": "ami-20cfc059"
+                "HVM64": "ami-0eaf4976"
             },
             "eu-west-1": {
-                "HVM64": "ami-77eaf911"
+                "HVM64": "ami-3e09ff47"
             },
             "eu-central-1": {
-                "HVM64": "ami-7ef65311"
+                "HVM64": "ami-836ec0ec"
             },
             "ap-southeast-1": {
-                "HVM64": "ami-6770f004"
+                "HVM64": "ami-09cb536a"
             },
             "ap-northeast-1": {
-                "HVM64": "ami-bc0e0cdb"
+                "HVM64": "ami-f554bf93"
             },
             "ap-south-1": {
-                "HVM64": "ami-41e19d2e"
+                "HVM64": "ami-702b511f"
             },
             "sa-east-1": {
-                "HVM64": "ami-6b2c4407"
+                "HVM64": "ami-fb9aec97"
             }
         }
     },
@@ -250,6 +250,14 @@
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443",
+                        "CidrIp": {
+                            "Ref": "AdminLocation"
+                        }
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "2000",
+                        "ToPort": "2000",
                         "CidrIp": {
                             "Ref": "AdminLocation"
                         }
