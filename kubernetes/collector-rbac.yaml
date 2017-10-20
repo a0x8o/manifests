@@ -20,6 +20,7 @@ spec:
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
+      serviceAccountName: netsil
       containers:
       - name: collector
         image: netsil/collectors:latest
@@ -30,17 +31,20 @@ spec:
             - NET_RAW
             - NET_ADMIN
         env:
-        # Please DO NOT prepend http:// or https:// to the NETSIL_SERVICE_HOST value
-        - name: NETSIL_SERVICE_HOST
-          value: ${your_netsil_ip}
-        - name: NETSIL_ORGANIZATION_ID
-          value: ${organizationId}
+        #- name: NETSIL_SERVICE_HOST
+        #  value: "<AOC address here>"
+        #- name: NETSIL_ORGANIZATION_ID
+        #  value: "<Netsil Organization ID>"
         - name: DEPLOY_ENV
-          value: 'docker'
+          value: "docker"
         - name: KUBERNETES
           value: "yes"
         - name: SD_BACKEND
-          value: docker
+          value: "docker"
+        - name: KUBERNETES_KUBELET_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
         volumeMounts:
         - name: cgroup
           mountPath: /host/sys/fs/cgroup/
